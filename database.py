@@ -3,7 +3,6 @@ from flask import Flask, jsonify, abort, make_response, request, url_for
 import mysql.connector as mariadb
 import logging
 import flask
-import json
 import time
 from config import config
 
@@ -54,8 +53,9 @@ def new_reading():
    humidity  = request.args.get('humidity', None)
    temp = request.args.get('temp', None)
    growth = request.args.get('growth', None)
+   ph = request.args.get('ph', None)
    try: 
-    cur.execute("INSERT INTO reading (TimeStamp,Humidity,TempSensor1,GrowthStatus) VALUES (%s,%s,%s,%s)", (time.strftime("%c"),humidity,temp,growth))
+    cur.execute("INSERT INTO reading (TimeStamp,Humidity,TempSensor1,GrowthStatus,ph) VALUES (%s,%s,%s,%s,%s)", (time.strftime("%c"),humidity,temp,growth,ph))
    except mariadb.Error as e: 
     print(f"Error: {e}")
 
