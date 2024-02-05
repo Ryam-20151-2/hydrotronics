@@ -460,6 +460,18 @@ float get_humidity_value()
   return DHT.humidity;
 }
 
+/////// Serial Communication Functions ///////
+void write_new_entry(String humidity, String temp, String ph)
+{
+  Serial.println(humidity+":"+temp+":"+ph);
+}
+
+String read_from_serial()
+{
+  String data = Serial.readStringUntil('\n');
+  return data;
+}
+
 void loop() 
 {
   switch (current_state)
@@ -473,7 +485,8 @@ void loop()
       tds_control_loop(GRO, global_tds_value + 20);
       ph_control_loop(6);
       move_ph_probe(OUT);
-
+      //SEND MESSAGE HERE
+      write_new_entry(String(HUMIDITY_VARIABLE),String(TEMPERATURE_VARIABLE) String(global_ph_value));
       delay(300000 - (millis() - not_spray_start_time));
       current_state = SPRAY;
       break;
