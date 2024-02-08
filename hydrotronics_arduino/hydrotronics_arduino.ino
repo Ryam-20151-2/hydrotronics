@@ -463,9 +463,9 @@ float get_humidity_value()
 }
 
 /////// Serial Communication Functions ///////
-void write_new_entry(String humidity, String temp, String ph)
+void write_new_entry(String humidity, String temp, String ph, String tds)
 {
-  Serial.println(humidity+":"+temp+":"+ph);
+  Serial.println(humidity+":"+temp+":"+ph+":"+tds);
 }
 
 String read_from_serial()
@@ -491,7 +491,7 @@ void loop()
       global_humidity_value = get_humidity_value();
 
       //SEND MESSAGE HERE
-      write_new_entry(String(global_humidity_value),String(global_temp_value) String(global_ph_value) String(global_tds_value));
+      write_new_entry(String(global_humidity_value), String(global_temp_value), String(global_ph_value), String(global_tds_value));
       delay(300000 - (millis() - not_spray_start_time));
       current_state = SPRAY;
       break;
