@@ -98,6 +98,8 @@ float global_tds_value = 0;
 
 /////// Temperature & Humidity Global Variables ///////
 dht DHT;
+float global_temp_value = 0;
+float global_humidity_value = 0;
 
 /////// Other Global Variables ///////
 state current_state = NOT_SPRAY;
@@ -485,8 +487,11 @@ void loop()
       tds_control_loop(GRO, global_tds_value + 20);
       ph_control_loop(6);
       move_ph_probe(OUT);
+      global_temp_value = get_temperature_value();
+      global_humidity_value = get_humidity_value();
+
       //SEND MESSAGE HERE
-      write_new_entry(String(HUMIDITY_VARIABLE),String(TEMPERATURE_VARIABLE) String(global_ph_value));
+      write_new_entry(String(global_humidity_value),String(global_temp_value) String(global_ph_value) String(global_tds_value));
       delay(300000 - (millis() - not_spray_start_time));
       current_state = SPRAY;
       break;
