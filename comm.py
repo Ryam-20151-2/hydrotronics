@@ -14,6 +14,9 @@ def read_from_serial(ser):
     return data_arr
 
 def write_new_post(data_arr):
-    data = "?humidity="+data_arr[0]+"&temp="+data_arr[1]+"&ph="+data_arr[2]+"&growth="+data_arr[3]
+    data = "?humidity="+data_arr[0]+"&temp="+data_arr[1]+"&ph="+data_arr[2]+"&tds="+data_arr[3]+"&growth="+data_arr[4]
     response = requests.post(api_url+post_endpoint+data)
     return response
+
+def write_to_serial(data_in,ser):
+    ser.write(data_in)

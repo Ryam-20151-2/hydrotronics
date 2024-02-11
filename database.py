@@ -54,8 +54,9 @@ def new_reading():
    temp = request.args.get('temp', None)
    growth = request.args.get('growth', None)
    ph = request.args.get('ph', None)
+   tds = request.args.get('tds', None)
    try: 
-    cur.execute("INSERT INTO reading (TimeStamp,Humidity,TempSensor1,GrowthStatus,ph) VALUES (%s,%s,%s,%s,%s)", (time.strftime("%c"),humidity,temp,growth,ph))
+    cur.execute("INSERT INTO reading (TimeStamp,Humidity,TempSensor1,GrowthStatus,ph,tds) VALUES (%s,%s,%s,%s,%s)", (time.strftime("%c"),humidity,temp,growth,ph,tds))
    except mariadb.Error as e: 
     print(f"Error: {e}")
 

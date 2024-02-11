@@ -12,10 +12,15 @@ def main():
     while True:
         new_data = comm.read_from_serial(ser)
         if(len(new_data) > 0):
-            #measure_height.  ##call measure height and return actual value
-            new_data.append("15")
+            #growth = measure_growth()
+            #new_data.append(growth)
+            
+            new_data.append("15") # to replace with above
+            
             response = comm.write_new_post(new_data)
             print(response)
+
+            #comm.write_to_serial(new_data[4], ser)
         else:
             print("No Data")
         time.sleep(1)
