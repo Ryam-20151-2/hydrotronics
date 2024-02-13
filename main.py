@@ -4,15 +4,15 @@
 import comm
 import time
 import serial
-#import measure_height
-
+import measure_height
+time_start = time.time()
 def main():
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.reset_input_buffer()
     while True:
         new_data = comm.read_from_serial(ser)
         if(len(new_data) > 0):
-            #growth = measure_growth()
+            #growth = measure_height.measure_growth()
             #new_data.append(growth)
             
             new_data.append("15") # to replace with above
