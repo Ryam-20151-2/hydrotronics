@@ -470,8 +470,10 @@ void write_new_entry(String humidity, String temp, String ph, String tds)
 
 String read_from_serial()
 {
-  String data = Serial.readStringUntil('\n');
-  return data;
+  if (Serial.available() > 0) {
+    String data = Serial.readStringUntil('\n');
+    return data;
+  }
 }
 
 void loop() 
@@ -492,6 +494,7 @@ void loop()
 
       //SEND MESSAGE HERE
       write_new_entry(String(global_humidity_value), String(global_temp_value), String(global_ph_value), String(global_tds_value));
+      //growth = read_from_serial();
       delay(300000 - (millis() - not_spray_start_time));
       current_state = SPRAY;
       break;
