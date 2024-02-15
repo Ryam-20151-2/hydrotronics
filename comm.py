@@ -3,7 +3,7 @@
 import serial
 import time
 import requests
-api_url = "http://192.168.0.146:5000"
+api_url = "http://127.0.0.1:5000"
 post_endpoint = '/hydro/reading/new'
 
 def read_from_serial(ser):

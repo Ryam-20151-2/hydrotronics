@@ -4,7 +4,7 @@
 import comm
 import time
 import serial
-import measure_height
+#import measure_height
 time_start = time.time()
 def main():
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
