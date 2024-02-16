@@ -15,15 +15,15 @@ def main():
             #growth = measure_height.measure_growth()
             #new_data.append(growth)
             
-            new_data.append("15") # to replace with above
+            new_data.append("500") # to replace with above
             
             response = comm.write_new_post(new_data)
             print(response)
 
-            #comm.write_to_serial(new_data[4], ser)
+            comm.write_to_serial(new_data[4], ser)
         else:
             print("No Data")
-        time.sleep(1)
+        time.sleep(60)
 
 if __name__ == "__main__":
     main()
