@@ -5,8 +5,9 @@ import time
 import requests
 api_url = "http://127.0.0.1:5000"
 post_endpoint = '/hydro/reading/new'
-
-def read_from_serial(ser):
+ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+ser.reset_input_buffer()
+def read_from_serial():
     data_arr = []
     if ser.in_waiting > 0:
         line = ser.readline().decode('utf-8').rstrip()
@@ -18,5 +19,6 @@ def write_new_post(data_arr):
     response = requests.post(api_url+post_endpoint+data)
     return response
 
-def write_to_serial(data_in,ser):
-    ser.write(data_in)
+def write_to_serial(data_in):
+    b = bytes(data_in, 'utf-8')
+    ser.write(b)
