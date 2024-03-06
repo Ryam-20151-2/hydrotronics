@@ -5,6 +5,7 @@ import logging
 import flask
 import time
 from config import config
+from config import config2
 
 logging.basicConfig(filename='api.log',level=logging.DEBUG)
 
@@ -62,5 +63,26 @@ def new_reading():
 
    conn.commit()
    return "Success" #need to update
+
+# route to insert a new reading
+@app.route('/hydro/inter/new', methods=['POST'])
+def new_inter_reading():
+   # connection for MariaDB
+   conn = mariadb.connect(**config2)
+   # create a connection cursor
+   cur = conn.cursor()
+   # execute a SQL statement 
+   humidity  = request.args.get('humidity', None)
+   temp = request.args.get('temp', None)
+   ph = request.args.get('ph', None)
+   tds = request.args.get('tds', None)
+   try: 
+    cur.execute("INSERT INTO reading (TimeStamp,Humidity,Temp,ph,tds) VALUES (%s,%s,%s,%s,%s)", (time.strftime("%c"),humidity,temp,ph,tds))
+   except mariadb.Error as e: 
+    print(f"Error: {e}")
+
+   conn.commit()
+   return "Success" #need to update
+
 
 app.run(host='0.0.0.0')

@@ -1,0 +1,197 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.146:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug:192.168.0.112 - - [27/Jan/2024 19:20:25] "POST /hydro/reading/new?humidity=122333&temp=34213&growth=22&ph=12 HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.112 - - [27/Jan/2024 19:20:34] "GET /hydro/data/ph HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.146:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug:192.168.0.112 - - [27/Jan/2024 20:30:41] "POST /hydro/reading/new?humidity=122333&temp=34213&growth=22&ph=12 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/comm.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/comm.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug:192.168.0.146 - - [27/Jan/2024 20:34:00] "POST /hydro/reading/new HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.146 - - [27/Jan/2024 20:34:05] "POST /hydro/reading/new HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.112 - - [27/Jan/2024 20:34:10] "GET /hydro/data/ph HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.146 - - [27/Jan/2024 20:34:10] "POST /hydro/reading/new HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.112 - - [27/Jan/2024 20:34:15] "GET /hydro/data/ph HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.146 - - [27/Jan/2024 20:34:15] "POST /hydro/reading/new HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.146 - - [27/Jan/2024 20:34:20] "POST /hydro/reading/new HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.112 - - [27/Jan/2024 20:34:37] "GET /hydro/data/Humidity HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/comm.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug:192.168.0.146 - - [27/Jan/2024 20:35:43] "POST /hydro/reading/new?humidity=122333&temp=34213&growth=22&ph=12 HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.112 - - [27/Jan/2024 20:35:48] "GET /hydro/data/Humidity HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/comm.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug:192.168.0.146 - - [27/Jan/2024 20:36:07] "POST /hydro/reading/new?humidity=122333&temp=34213&growth=22&ph=12 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/comm.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/comm.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/comm.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/comm.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/comm.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug:192.168.0.146 - - [27/Jan/2024 20:38:40] "POST /hydro/reading/new?humidity=14&temp=15&ph=16&growth=15 HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.112 - - [27/Jan/2024 20:38:43] "GET /hydro/data/Humidity HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.146 - - [27/Jan/2024 20:38:45] "POST /hydro/reading/new?humidity=14&temp=15&ph=16&growth=15 HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.112 - - [27/Jan/2024 20:38:46] "GET /hydro/data/Humidity HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/main.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/main.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/main.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/main.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/comm.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 544-278-658
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.147:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 945-404-285
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.147:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 945-404-285
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.147:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 945-404-285
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.147:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 381-433-717
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.147:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 381-433-717
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.147:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 945-404-285
+INFO:werkzeug:192.168.0.112 - - [16/Feb/2024 00:25:21] "GET /hydro/data/Humidity HTTP/1.1" 200 -
+                                                                                                                                                                                                                                                                              INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.147:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 945-404-285
+INFO:werkzeug:192.168.0.112 - - [16/Feb/2024 00:34:40] "POST /hydro/reading/new?humidity=122333&temp=34213&growth=22&ph=12&tds=222 HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.112 - - [16/Feb/2024 00:34:43] "GET /hydro/data/tds HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Feb/2024 00:34:57] "POST /hydro/reading/new?humidity=14&temp=15&ph=16&tds=17&growth=15 HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.112 - - [16/Feb/2024 00:34:58] "GET /hydro/data/tds HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.146:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 945-404-285
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.146:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 138-573-413
+INFO:werkzeug:192.168.0.112 - - [28/Feb/2024 23:10:12] "POST /hydro/reading/new?humidity=122333&temp=34213&growth=22&ph=12&tds=222 HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.112 - - [28/Feb/2024 23:10:28] "POST /hydro/inter/new?humidity=122333&temp=34213&ph=12&tds=222 HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.146:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 138-573-413
+INFO:werkzeug:192.168.0.112 - - [28/Feb/2024 23:10:40] "POST /hydro/inter/new?humidity=122333&temp=34213&ph=12&tds=222 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/database.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 138-573-413
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/database.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 138-573-413
+INFO:werkzeug: * Detected change in '/home/ryam/capstone/hydrotronics/database.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.146:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 138-573-413
+INFO:werkzeug:192.168.0.112 - - [28/Feb/2024 23:10:56] "POST /hydro/inter/new?humidity=122333&temp=34213&ph=12&tds=222 HTTP/1.1" 200 -
