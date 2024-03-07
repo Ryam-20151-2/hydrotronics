@@ -11,7 +11,7 @@ target_tds = 500
 growth = 12
 def main():
     time.sleep(6)
-    comm.write_to_serial("500\n")
+    comm.write_to_serial(target_tds + "\n")
     while True:
         new_data = comm.read_from_serial()
         if(len(new_data) > 0):
@@ -24,7 +24,7 @@ def main():
                 response = comm.write_new_post(new_data)
             else:
                 response = comm.write_inter_reading(new_data)
-            comm.write_to_serial(new_data[4]+"\n")
+            comm.write_to_serial(target_tds+"\n")
             print(new_data)
             print(response)
         else:

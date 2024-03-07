@@ -3,15 +3,15 @@
 config = {
     'host': '127.0.0.1',
     'port': 3306,
-    'user': 'test',
+    'user': 'user',
     'password': '123',
-    'database': 'test1'
+    'database': 'capstone'
 }
 
 config2 = {
     'host': '127.0.0.1',
     'port': 3306,
-    'user': 'test',
+    'user': 'user',
     'password': '123',
-    'database': 'inter'
+    'database': 'capstone'
 }

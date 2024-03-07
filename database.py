@@ -6,7 +6,7 @@ import flask
 import time
 from config import config
 from config import config2
-
+from datetime import datetime
 logging.basicConfig(filename='api.log',level=logging.DEBUG)
 
 app = flask.Flask(__name__)
@@ -57,7 +57,7 @@ def new_reading():
    ph = request.args.get('ph', None)
    tds = request.args.get('tds', None)
    try: 
-    cur.execute("INSERT INTO reading (TimeStamp,Humidity,TempSensor1,GrowthStatus,ph,tds) VALUES (%s,%s,%s,%s,%s,%s)", (time.strftime("%c"),humidity,temp,growth,ph,tds))
+    cur.execute("INSERT INTO reading (TimeStamp,Humidity,Temp,Growth,ph,tds) VALUES (%s,%s,%s,%s,%s,%s)", (datetime.timestamp(datetime.now()),humidity,temp,growth,ph,tds))
    except mariadb.Error as e: 
     print(f"Error: {e}")
 
@@ -77,7 +77,7 @@ def new_inter_reading():
    ph = request.args.get('ph', None)
    tds = request.args.get('tds', None)
    try: 
-    cur.execute("INSERT INTO reading (TimeStamp,Humidity,Temp,ph,tds) VALUES (%s,%s,%s,%s,%s)", (time.strftime("%c"),humidity,temp,ph,tds))
+    cur.execute("INSERT INTO inter (TimeStamp,Humidity,Temp,ph,tds) VALUES (%s,%s,%s,%s,%s)", (datetime.timestamp(datetime.now()),humidity,temp,ph,tds))
    except mariadb.Error as e: 
     print(f"Error: {e}")
 

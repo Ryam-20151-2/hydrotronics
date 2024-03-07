@@ -195,3 +195,92 @@ INFO:werkzeug: * Restarting with stat
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 138-573-413
 INFO:werkzeug:192.168.0.112 - - [28/Feb/2024 23:10:56] "POST /hydro/inter/new?humidity=122333&temp=34213&ph=12&tds=222 HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 456-780-617
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+INFO:mysql.connector:package: mysql.connector.plugins
+INFO:mysql.connector:plugin_name: mysql_native_password
+INFO:mysql.connector:AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:werkzeug:192.168.0.112 - - [07/Mar/2024 19:32:51] "[37mPOST /hydro/reading/new?humidity=122333&temp=34213&growth=22&ph=12&tds=222 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in '/home/ryam/hydrotronics/database.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 456-780-617
+INFO:werkzeug: * Detected change in '/home/ryam/hydrotronics/database.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 456-780-617
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 456-780-617
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+INFO:mysql.connector:package: mysql.connector.plugins
+INFO:mysql.connector:plugin_name: mysql_native_password
+INFO:mysql.connector:AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:werkzeug:192.168.0.112 - - [07/Mar/2024 19:33:13] "[37mPOST /hydro/reading/new?humidity=122333&temp=34213&growth=22&ph=12&tds=222 HTTP/1.1[0m" 200 -
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:werkzeug:192.168.0.112 - - [07/Mar/2024 19:33:18] "[37mPOST /hydro/inter/new?humidity=122333&temp=34213&ph=12&tds=222 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 456-780-617
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+INFO:mysql.connector:package: mysql.connector.plugins
+INFO:mysql.connector:plugin_name: mysql_native_password
+INFO:mysql.connector:AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:werkzeug:192.168.0.112 - - [07/Mar/2024 20:30:01] "[37mPOST /hydro/inter/new?humidity=122333&temp=34213&ph=12&tds=123 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in '/home/ryam/hydrotronics/database.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 456-780-617
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+INFO:mysql.connector:package: mysql.connector.plugins
+INFO:mysql.connector:plugin_name: mysql_native_password
+INFO:mysql.connector:AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:werkzeug:192.168.0.112 - - [07/Mar/2024 20:47:11] "[37mPOST /hydro/inter/new?humidity=122333&temp=34213&ph=12&tds=1231 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 456-780-617
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+INFO:mysql.connector:package: mysql.connector.plugins
+INFO:mysql.connector:plugin_name: mysql_native_password
+INFO:mysql.connector:AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:werkzeug:192.168.0.112 - - [07/Mar/2024 20:49:19] "[37mPOST /hydro/reading/new?humidity=122333&temp=34213&growth=22&ph=12&tds=222 HTTP/1.1[0m" 200 -
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:werkzeug:192.168.0.112 - - [07/Mar/2024 20:49:40] "[37mPOST /hydro/reading/new?humidity=122333&temp=34213&growth=22&ph=1123&tds=222 HTTP/1.1[0m" 200 -
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:werkzeug:192.168.0.112 - - [07/Mar/2024 20:52:09] "[37mPOST /hydro/inter/new?humidity=122333&temp=34213&ph=12&tds=1231 HTTP/1.1[0m" 200 -
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:werkzeug:192.168.0.112 - - [07/Mar/2024 20:52:10] "[37mPOST /hydro/inter/new?humidity=122333&temp=34213&ph=12&tds=1231 HTTP/1.1[0m" 200 -
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:werkzeug:192.168.0.112 - - [07/Mar/2024 21:41:04] "[37mPOST /hydro/inter/new?humidity=122333&temp=34213&ph=12&tds=1235 HTTP/1.1[0m" 200 -
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:werkzeug:192.168.0.112 - - [07/Mar/2024 21:41:07] "[37mPOST /hydro/inter/new?humidity=122333&temp=34213&ph=12&tds=1238 HTTP/1.1[0m" 200 -
