@@ -11,7 +11,7 @@ from time import sleep
 target_tds = 500
 growth = 10
 def determine_target_tds(elapsed_time):
-    get_photo()
+    #get_photo()
     if elapsed_time > 1814400:
         target_tds = 600 #subject to change
     elif elapsed_time > 1209600:
