@@ -21,16 +21,16 @@
 /////// TDS Constants ///////
 // Sensor Constants
 #define TDS_SENSOR_PIN A1
-#define TDS_NUM_SAMPLES 30
+#define TDS_NUM_SAMPLES 40
 
 // PID Constants
-#define MICRO_KP 4.0
-#define MICRO_KI 0.06
+#define MICRO_KP 1.5
+#define MICRO_KI 0.05
 #define MICRO_KD 0.0
-#define BLOOM_KP 4.5
+#define BLOOM_KP 2.5
 #define BLOOM_KI 0.05
 #define BLOOM_KD 0.0
-#define GRO_KP 4.5
+#define GRO_KP 2.3
 #define GRO_KI 0.03
 #define GRO_KD 0.0
 
@@ -44,6 +44,8 @@
 #define VREF 5.0
 #define TEMPERATURE 25.0
 #define MAX_CONTROL_LOOP_TIME (70000U)
+
+// #define DEBUG_PRINTS
 
 /////// ENUMS! ///////
 enum nutrient_solution
@@ -90,7 +92,7 @@ Servo ph_servo;
 Adafruit_DCMotor* nutrient_motors[3] = {S1_M1, S1_M2, S1_M3};
 
 /////// pH Global Variables ///////
-int global_ph_value = 0;
+float global_ph_value = 0;
 
 /////// TDS Global Variables ///////
 float tds_pid_constants[3][3] = {{MICRO_KP, MICRO_KI, MICRO_KD}, {BLOOM_KP, BLOOM_KI, BLOOM_KD}, {GRO_KP, GRO_KI, GRO_KD}};\
@@ -103,6 +105,10 @@ float global_humidity_value = 0;
 
 /////// Other Global Variables ///////
 state current_state = NOT_SPRAY;
+int count = 0;
+float microTarget = 0;
+float bloomTarget = 0;
+float groTarget = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -133,6 +139,8 @@ void setup() {
   S2_M1->setSpeed(0);
   S2_M1->run(FORWARD);
 
+  move_ph_probe(OUT);
+
   current_state = NOT_SPRAY;
 }
 
@@ -150,19 +158,22 @@ void get_tds_value()
   }
 
   // Sort readings to remove outliers
-  for (int i = 0; i < 10 - 1; i++)
+  int tds_buffer_sorted[10];
+  for (int i = 0; i < 10; i++)
+  {
+    int min_idx = i;
+    for (int j = i+1; j < 10; j++)
     {
-      for (int j = i+1; j < 10; j++)
+      if (tds_buffer[min_idx] > tds_buffer[j])
       {
-        if (tds_buffer[i] > tds_buffer[j])
-        {
-          int temp;
-          temp = tds_buffer[j];
-          tds_buffer[i] = tds_buffer[j];
-          tds_buffer[j] = temp;
-        }
+        min_idx = j;
       }
     }
+
+    int temp = tds_buffer[i];
+    tds_buffer[i] = tds_buffer[min_idx];
+    tds_buffer[min_idx] = temp;
+  }
 
   // Calculate average sensor reading from center samples
   for (int i = 2; i < 8; i ++)
@@ -172,10 +183,9 @@ void get_tds_value()
 
   tds_avg_value /= 6;
   float tds_voltage = (float)(tds_avg_value * VREF / 1024);
-
   float comp_coeff = 1.0+0.02*(TEMPERATURE-25.0);
   //temperature compensation
-  float comp_voltage=tds_avg_value/comp_coeff;
+  float comp_voltage=tds_voltage/comp_coeff;
   
   //convert voltage value to tds value
   float tds_value=(133.42*comp_voltage*comp_voltage*comp_voltage - 255.86*comp_voltage*comp_voltage + 857.39*comp_voltage)*0.5;
@@ -228,7 +238,15 @@ void tds_control_loop(nutrient_solution solution, float tds_target_value)
     static unsigned long tds_sample_time_point = millis();
     if(millis()-tds_sample_time_point > 40U){     //every 40 milliseconds,read the analog value from the ADC
       tds_sample_time_point = millis();
-      tds_buffer[tds_buffer_index] = analogRead(TDS_SENSOR_PIN);    //read the analog value and store into the buffer
+      tds_buffer[tds_buffer_index] = analogRead(TDS_SENSOR_PIN); //read the analog value and store into the buffer
+      float tds_voltage_temp = (float)(tds_buffer[tds_buffer_index] * VREF / 1024);
+      float comp_coeff_temp = 1.0+0.02*(TEMPERATURE-25.0);
+      //temperature compensation
+      float comp_voltage_temp=(tds_voltage_temp)/comp_coeff_temp;
+      
+      //convert voltage value to tds value
+      float tds_value_temp=(133.42*comp_voltage_temp*comp_voltage_temp*comp_voltage_temp - 255.86*comp_voltage_temp*comp_voltage_temp + 857.39*comp_voltage_temp)*0.5;
+      // Serial.println(tds_value_temp);
       tds_buffer_index++;
       if(tds_buffer_index == TDS_NUM_SAMPLES){ 
         tds_buffer_index = 0;
@@ -261,11 +279,10 @@ void tds_control_loop(nutrient_solution solution, float tds_target_value)
       prev_T = curr_T;
 
       // error
-      float e = tds_target_value - tds_value;
-
-      if (e < 5 && e > -5)
+      float e = 0;
+      if (tds_value >= 0)
       {
-        e = 0;
+        e = tds_target_value - tds_value;
       }
 
       // derivative
@@ -276,6 +293,11 @@ void tds_control_loop(nutrient_solution solution, float tds_target_value)
 
       // control signal
       float u = tds_pid_constants[solution][0]*e + tds_pid_constants[solution][1]*e_integral + tds_pid_constants[solution][2]*de_dt;
+
+      if (e < 5)
+      {
+        u = 0;
+      }
 
       // pump power saturation
       float power = fabs(u);
@@ -289,7 +311,7 @@ void tds_control_loop(nutrient_solution solution, float tds_target_value)
       }
 
       // select which pump to control
-      if (u > 0)
+      if (u >= 0)
       {
         nutrient_motors[solution]->setSpeed(power);
         nutrient_motors[solution]->run(FORWARD);
@@ -297,9 +319,15 @@ void tds_control_loop(nutrient_solution solution, float tds_target_value)
 
       e_prev = e;
 
-      Serial.println(tds_target_value);
+#ifndef DEBUG_PRINT
+      write_new_entry_testing(String(global_humidity_value), String(global_temp_value), String(global_ph_value), String(global_tds_value));
+#endif
+
+#ifdef DEBUG_PRINT
+      Serial.print(tds_target_value);
       Serial.print(" ");
       Serial.println(global_tds_value);
+#endif 
     }
 
     curr_time = millis();
@@ -348,7 +376,6 @@ void get_ph_value()
 
 void ph_control_loop(float ph_target_value)
 {
-  unsigned long int ph_avg_value;
   int ph_buffer[PH_NUM_SAMPLES];
 
   int ph_value = 0;
@@ -400,6 +427,7 @@ void ph_control_loop(float ph_target_value)
     // select which pump to control
     if (u < 0)
     {
+      //PH UP
       S2_M1->setSpeed(0);
       S2_M1->run(FORWARD);
       S1_M4->setSpeed(power);
@@ -407,6 +435,7 @@ void ph_control_loop(float ph_target_value)
     }
     else
     {
+      //PH DOWN
       S1_M4->setSpeed(0);
       S1_M4->run(FORWARD);
       S2_M1->setSpeed(power);
@@ -415,10 +444,16 @@ void ph_control_loop(float ph_target_value)
 
     e_Prev = e;
 
+#ifndef DEBUG_PRINT
+    write_new_entry_testing(String(global_humidity_value), String(global_temp_value), String(global_ph_value), String(global_tds_value));
+#endif
+
+#ifdef DEBUG_PRINT
     Serial.print(ph_target_value);
-    Serial.print(" ");
+    Serial.print(",");
     Serial.print(global_ph_value);
     Serial.println();
+#endif
 
     curr_time = millis();
   }
@@ -428,11 +463,11 @@ void move_ph_probe(ph_probe_motion action)
 {
   if (action == OUT)
   {
-    ph_servo.write(90);
+    ph_servo.write(150);
   }
   else
   {
-    ph_servo.write(-90);
+    ph_servo.write(90);
   }
 }
 
@@ -463,9 +498,13 @@ float get_humidity_value()
 }
 
 /////// Serial Communication Functions ///////
+void write_new_entry_testing(String humidity, String temp, String ph, String tds)
+{
+  Serial.println(humidity+":"+temp+":"+ph+":"+tds+":0");
+}
 void write_new_entry(String humidity, String temp, String ph, String tds)
 {
-  Serial.println(humidity+":"+temp+":"+ph+":"+tds);
+  Serial.println(humidity+":"+temp+":"+ph+":"+tds+":1");
 }
 
 String read_from_serial()
@@ -480,29 +519,77 @@ void loop()
 {
   switch (current_state)
   {
+    case SPRAY:
+      change_solenoid_state(OPEN);
+      delay(5000); // Spraying for 3 seconds
+      change_solenoid_state(CLOSE);
+      delay(4000); // Spraying for 5 seconds
+      current_state = NOT_SPRAY;
+      break;
     case NOT_SPRAY:
       unsigned long not_spray_start_time = millis();
-
-      tds_control_loop(MICRO, 660 + 30);
-      tds_control_loop(BLOOM, global_tds_value + 20);
-      move_ph_probe(IN);
-      tds_control_loop(GRO, global_tds_value + 20);
-      ph_control_loop(6);
-      move_ph_probe(OUT);
+      delay(5000);
+      get_tds_value();
+      get_ph_value();
       global_temp_value = get_temperature_value();
       global_humidity_value = get_humidity_value();
 
-      //SEND MESSAGE HERE
+#ifndef DEBUG_PRINT
       write_new_entry(String(global_humidity_value), String(global_temp_value), String(global_ph_value), String(global_tds_value));
-      //growth = read_from_serial();
+#endif
+      
+      if (count < 1)
+      {
+        microTarget = ((global_tds_value*0.001*7) + 161.604*0.0017)/ (0.001*(7+0.00231));
+      }
+
+#ifdef DEBUG_PRINT
+      Serial.print("Micro");
+      Serial.println(microTarget);
+#endif
+
+      tds_control_loop(MICRO, microTarget);
+      nutrient_motors[MICRO]->setSpeed(0);
+      
+      if (count < 1)
+      {
+        bloomTarget = ((global_tds_value*0.001*7) + 59.584*0.0017)/ (0.001*(7+0.00231));
+      }
+#ifdef DEBUG_PRINT
+      Serial.print("Bloom");
+      Serial.println(bloomTarget);
+#endif
+      tds_control_loop(BLOOM, bloomTarget);
+      nutrient_motors[BLOOM]->setSpeed(0);
+      
+      if (count < 1)
+      {
+        groTarget = ((global_tds_value*0.001*7) + 82.903*0.0017)/ (0.001*(7+0.00231));
+        count = count + 1;
+      }
+      
+      move_ph_probe(IN);
+
+#ifdef DEBUG_PRINT
+      Serial.print("Gro");
+      Serial.println(groTarget);
+#endif
+
+      tds_control_loop(GRO, groTarget);
+      nutrient_motors[GRO]->setSpeed(0);
+      
+      ph_control_loop(6);
+      S1_M4->setSpeed(0);
+      S2_M1->setSpeed(0);
+      move_ph_probe(OUT);
+
+#ifndef DEBUG_PRINT
+      write_new_entry(String(global_humidity_value), String(global_temp_value), String(global_ph_value), String(global_tds_value));
+#endif
+
+      String growth = read_from_serial();
       delay(300000 - (millis() - not_spray_start_time));
       current_state = SPRAY;
-      break;
-    case SPRAY:
-      change_solenoid_state(OPEN);
-      delay(10000); // Spraying for 10 seconds
-      change_solenoid_state(CLOSE);
-      current_state = NOT_SPRAY;
       break;
     default:
       break;
