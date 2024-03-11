@@ -2,16 +2,17 @@
 
 #import measure_height
 import os, os.path
-from picamera import PiCamera
+from picamera2 import Picamera2
 from time import sleep
 
-# camera = PiCamera()
-# camera.resolution = (1024, 768)
-# camera.start_preview()
+camera = Picamera2()
+camera_config = camera.create_still_configuration(main={"size": (1920, 1080)}, lores={"size": (640, 480)}, display="lores")
+camera.configure(camera_config)
+camera.start_preview()
 target_tds = 500
 growth = 0
 def determine_target_tds(elapsed_time):
-    #get_photo()
+    get_photo()
     if elapsed_time > 1814400:
         target_tds = 600 #subject to change
         growth = 80
@@ -28,11 +29,11 @@ def determine_target_tds(elapsed_time):
 
 def get_photo():
     # Camera warm-up time
+    camera.start()
     sleep(2)
-    camera.capture('temp.jpg')
+    camera.capture_file('../photos/temp.jpg')
     manage_files()
 
 def manage_files():
     onlyfiles = next(os.walk("../photos"))[2]
-    print (len(onlyfiles))
     os.rename('../photos/temp.jpg', '../photos/photo_'+str(len(onlyfiles))+'.jpg')
