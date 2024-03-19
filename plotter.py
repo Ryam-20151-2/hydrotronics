@@ -20,11 +20,8 @@ def plot_tds():
     for data in cur:
         return_data.append(data)
     for count in range(0,len(return_data)-1):
-        print(return_data)
-        print(return_data[int(num) - count -1][0])
-        print(return_data[int(num) - count -2][0])
         cur.execute(
-        "SELECT tds, TimeStamp FROM inter WHERE TimeStamp BETWEEN "+str(return_data[int(num) - count -1][0])+" AND "+str(return_data[int(num) - count-2][0]))
+        "SELECT tds, TimeStamp FROM inter WHERE TimeStamp BETWEEN "+str(return_data[int(num) - (count)][0])+" AND "+str(return_data[int(num) - (count)-1][0]))
         values=[]
         times=[]
         for data in cur:
@@ -33,10 +30,10 @@ def plot_tds():
         new_times = []
         for data in times:
             new_times.append( data - times[0])
-        print(values)
-        print(new_times)
+        timestamp = datetime.fromtimestamp(int(float(return_data[int(num)-count][0])))
+        timestamp2 = datetime.fromtimestamp(int(float(return_data[int(num)-count-1][0])))
         plt.plot(new_times,values)
-        plt.title("TDS Settling Time From "+str(return_data[int(num) - count -1][0])+" and "+str(return_data[int(num) - count-2][0]))
+        plt.title("TDS Settling Time From "+str(timestamp.strftime('%Y-%m-%d %H:%M:%S'))+" and "+str(timestamp2.strftime('%Y-%m-%d %H:%M:%S')))
         plt.xlabel("Time (s)")
         plt.ylabel("TDS Value")
         plt.show()
@@ -56,7 +53,7 @@ def plot_ph():
         return_data.append(data)
     for count in range(0,len(return_data)-1):
         cur.execute(
-        "SELECT ph, TimeStamp FROM inter WHERE TimeStamp BETWEEN "+str(str(return_data[int(num) - count -1][0])+" AND "+str(return_data[int(num) - count-2][0]))
+        "SELECT ph, TimeStamp FROM inter WHERE TimeStamp BETWEEN "+str(str(return_data[int(num) - count ][0])+" AND "+str(return_data[int(num) - count-1][0]))
         )
         values=[]
         times=[]
@@ -66,10 +63,10 @@ def plot_ph():
         new_times = []
         for data in times:
             new_times.append( data - times[0])
-        print(values)
-        print(new_times)
+        timestamp = datetime.fromtimestamp(int(float(return_data[int(num)-count][0])))
+        timestamp2 = datetime.fromtimestamp(int(float(return_data[int(num)-count-1][0])))
         plt.plot(new_times,values)
-        plt.title("PH Settling Time From "+str(return_data[int(num) - count -1][0])+" and "+str(return_data[int(num) - count-2][0]))
+        plt.title("PH Settling Time From "+str(timestamp.strftime('%Y-%m-%d %H:%M:%S'))+" and "+str(timestamp2.strftime('%Y-%m-%d %H:%M:%S')))
         plt.xlabel("Time (s)")
         plt.ylabel("PH Value")
         plt.show()
